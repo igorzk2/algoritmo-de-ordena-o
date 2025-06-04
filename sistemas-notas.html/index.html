@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema Escolar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .search-box, .sort-options, .add-student-form {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .btn-report {
+            padding: 6px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn-report:hover {
+            background-color: #45a049;
+        }
+
+        button, select, input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .add-student-form input {
+            flex: 1 1 180px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerenciamento de Notas</h1>
+
+        <h2>Adicionar Novo Aluno</h2>
+        <div class="add-student-form">
+            <input type="text" id="novo-nome" placeholder="Nome do aluno">
+            <input type="text" id="novo-matricula" placeholder="Matrícula">
+            <input type="number" id="nota-matematica" placeholder="Nota Matemática" step="0.1" min="0" max="10">
+            <input type="number" id="nota-portugues" placeholder="Nota Português" step="0.1" min="0" max="10">
+            <button onclick="adicionarAluno()">Adicionar Aluno</button>
+        </div>
+
+        <div class="search-box">
+            <select id="search-type">
+                <option value="nome">Por Nome</option>
+                <option value="matricula">Por Matrícula</option>
+            </select>
+            <input type="text" id="search-term" placeholder="Digite para buscar...">
+            <button onclick="buscarAlunos()">Buscar</button>
+        </div>
+
+        <div class="sort-options">
+            <label>Ordenar por:</label>
+            <select id="sort-criteria">
+                <option value="nome">Nome</option>
+                <option value="matricula">Matrícula</option>
+                <option value="matematica">Nota (Matemática)</option>
+                <option value="portugues">Nota (Português)</option>
+            </select>
+            <select id="sort-order">
+                <option value="asc">Crescente</option>
+                <option value="desc">Decrescente</option>
+            </select>
+            <button onclick="ordenarAlunos()">Aplicar</button>
+        </div>
+
+        <table id="alunos-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                    <th>Matemática</th>
+                    <th>Português</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Alunos serão inseridos via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const alunosData = [
+            { id: 1, nome: "João Silva", matricula: "2023001", notas: { "Matemática": 8.5, "Português": 7.0 } },
+            { id: 2, nome: "Maria Souza", matricula: "2023002", notas: { "Matemática": 9.0, "Português": 8.5 } },
+            { id: 3, nome: "Carlos Oliveira", matricula: "2023003", notas: { "Matemática": 7.5, "Português": 9.0 } }
+        ];
+
+        function atualizarTabela(lista = alunosData) {
+            const tabela = document.getElementById('alunos-table').getElementsByTagName('tbody')[0];
+            tabela.innerHTML = '';
+            lista.forEach(aluno => {
+                const row = tabela.insertRow();
+                row.innerHTML = `
+                    <td>${aluno.id}</td>
+                    <td>${aluno.nome}</td>
+                    <td>${aluno.matricula}</td>
+                    <td>${aluno.notas["Matemática"]}</td>
+                    <td>${aluno.notas["Português"]}</td>
+                    <td><a href="#" class="btn-report">Relatório</a></td>
+                `;
+            });
+        }
+
+        function adicionarAluno() {
+            const nome = document.getElementById('novo-nome').value.trim();
+            const matricula = document.getElementById('novo-matricula').value.trim();
+            const matematica = parseFloat(document.getElementById('nota-matematica').value);
+            const portugues = parseFloat(document.getElementById('nota-portugues').value);
+
+            if (!nome || !matricula || isNaN(matematica) || isNaN(portugues)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            const novoId = alunosData.length ? alunosData[alunosData.length - 1].id + 1 : 1;
+
+            const novoAluno = {
+                id: novoId,
+                nome: nome,
+                matricula: matricula,
+                notas: {
+                    "Matemática": matematica,
+                    "Português": portugues
+                }
+            };
+
+            alunosData.push(novoAluno);
+            atualizarTabela();
+
+            document.getElementById('novo-nome').value = "";
+            document.getElementById('novo-matricula').value = "";
+            document.getElementById('nota-matematica').value = "";
+            document.getElementById('nota-portugues').value = "";
+        }
+
+        function buscarAlunos() {
+            const tipo = document.getElementById('search-type').value;
+            const termo = document.getElementById('search-term').value.toLowerCase();
+
+            const filtrados = alunosData.filter(aluno => {
+                if (tipo === 'nome') {
+                    return aluno.nome.toLowerCase().includes(termo);
+                } else if (tipo === 'matricula') {
+                    return aluno.matricula.includes(termo);
+                }
+                return true;
+            });
+
+            atualizarTabela(filtrados);
+        }
+
+        function ordenarAlunos() {
+            const criterio = document.getElementById('sort-criteria').value;
+            const ordem = document.getElementById('sort-order').value;
+
+            const alunosOrdenados = [...alunosData].sort((a, b) => {
+                let valorA, valorB;
+
+                if (criterio === 'nome') {
+                    valorA = a.nome.toLowerCase();
+                    valorB = b.nome.toLowerCase();
+                } else if (criterio === 'matricula') {
+                    valorA = a.matricula;
+                    valorB = b.matricula;
+                } else if (criterio === 'matematica') {
+                    valorA = a.notas["Matemática"];
+                    valorB = b.notas["Matemática"];
+                } else if (criterio === 'portugues') {
+                    valorA = a.notas["Português"];
+                    valorB = b.notas["Português"];
+                }
+
+                if (ordem === 'asc') {
+                    return valorA > valorB ? 1 : -1;
+                } else {
+                    return valorA < valorB ? 1 : -1;
+                }
+            });
+
+            atualizarTabela(alunosOrdenados);
+        }
+
+        // Inicializa tabela ao carregar
+        atualizarTabela();
+    </script>
+</body>
+</html>
