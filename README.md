@@ -1,4 +1,4 @@
-# 📚 Sistema de Gerenciamento Escolar
+# Sistema de Gerenciamento Escolar
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -6,12 +6,12 @@
 
 Um sistema web completo para gerenciamento de alunos e notas escolares, desenvolvido com tecnologias front-end puras.
 
-## 🚀 Demonstração
+## Demonstração
 
 ![Screenshot do Sistema](https://via.placeholder.com/800x500?text=Sistema+Escolar+Preview)  
 *(Imagem ilustrativa - substituir por screenshot real)*
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - **Cadastro de Alunos**
   - Adição de novos alunos com todos os dados necessários
@@ -29,17 +29,17 @@ Um sistema web completo para gerenciamento de alunos e notas escolares, desenvol
   - Tabela responsiva
   - Design moderno e acessível
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Front-end**
   - HTML5 semântico
   - CSS3 com Flexbox
   - JavaScript Vanilla ES6+
 
-## 📦 Estrutura do Projeto
+## Estrutura do Projeto
 
 
-## 🖥️ Como Executar
+## Como Executar
 
 1. Clone o repositório:
 ```bash
