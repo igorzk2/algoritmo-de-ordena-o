@@ -31,9 +31,6 @@ Um sistema web completo para gerenciamento de alunos e notas escolares, desenvol
   - CSS3 com Flexbox
   - JavaScript Vanilla ES6+
 
-## Estrutura do Projeto
-
-
 ## Como Executar
 
 1. Clone o repositório:
