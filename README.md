@@ -37,3 +37,17 @@ Um sistema web completo para gerenciamento de alunos e notas escolares, desenvol
   - JavaScript Vanilla ES6+
 
 ## 📦 Estrutura do Projeto
+
+
+## 🖥️ Como Executar
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/sistema-escolar.git
+```
+
+## Licença
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+
+Desenvolvido por ...
