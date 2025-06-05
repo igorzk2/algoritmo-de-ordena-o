@@ -6,11 +6,6 @@
 
 Um sistema web completo para gerenciamento de alunos e notas escolares, desenvolvido com tecnologias front-end puras.
 
-## Demonstração
-
-![Screenshot do Sistema](https://via.placeholder.com/800x500?text=Sistema+Escolar+Preview)  
-*(Imagem ilustrativa - substituir por screenshot real)*
-
 ## Funcionalidades
 
 - **Cadastro de Alunos**
