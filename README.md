@@ -38,8 +38,12 @@ Um sistema web completo para gerenciamento de alunos e notas escolares, desenvol
 git clone https://github.com/seu-usuario/sistema-escolar.git
 ```
 
+## Fontes para o auxilio do Readme.md
+https://www.deepseek.com/en
+
+
 ## Licença
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 
-Desenvolvido por ...
+Desenvolvido por Igor Vieira, Pedro Amaral
